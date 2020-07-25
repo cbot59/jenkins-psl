@@ -20,9 +20,9 @@ def healthcheck(Pipeline p) {
 }
 
 def deleteOldImage(Pipeline p) {
-  withEnv(["PATH+DOCKER=${p.dockerTool}/bin"]){
-    def output = sh script: "docker rmi \$(docker images | grep -Ev 'latest|${BUILD_NUMBER}' | awk '/${p.docker_user}\\/${p.repository_name}/ {print \$1\":\"\$2}')", returnStdout: true
-    println "Remove old Image"
-    println output
-  }
+   withEnv(["PATH+DOCKER=${p.dockerTool}/bin"]){
+       def output = sh script: "docker rmi \$(docker images | grep -Ev 'latest|${BUILD_NUMBER}' | awk '/${p.docker_user}\\/${p.repository_name}/ {print \$1\":\"\$2}')", returnStdout: true
+       println "Remove old Image"
+       println output
+   }
 }
